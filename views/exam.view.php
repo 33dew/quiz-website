@@ -121,7 +121,6 @@
                 answersDiv.appendChild(answerDiv);
             }
             questionData.appendChild(answersDiv);
-            console.log({j, a: answers[j]});
             if(answers[j]) {
                 document.querySelector(`input[value="${answers[j]}"][name="answer${j}"]`).checked = true;
             }
