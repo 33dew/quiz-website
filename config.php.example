@@ -1,0 +1,9 @@
+<?php
+  return [
+    'HOST' => 'localhost',
+    'PORT' => 3306,
+    'DBNAME' => 'sysegz',
+    'USER' => 'root',
+    'PASSWORD' => ''
+  ];
+?>

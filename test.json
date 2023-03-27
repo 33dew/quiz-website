@@ -1,0 +1,44 @@
+{
+  "questions": [
+    {
+      "question": "Kto wypowiada tę kwestie? <span class='badge text-bg-secondary'>„Na głupotę nie ma lekarstwa.”</span> ",
+        "answers": [
+            "Yasuo",
+            "Irelia",
+            "Akali",
+            "Illaoi"
+        ],
+        "correctAnswer": 0
+    },
+    {
+      "question": "Na jakie statystki wpływa ten przedmiot?<span class='badge text-bg-secondary'>„Czarny Tasak.”</span>",
+        "answers": [
+            "+400 pkt. zdrowia<br>+40 pkt. obrażeń ataku<br>+30 jedn. przyspieszenia umiejętności",
+            "+400 pkt. many<br> +5% szybkości ruchu<br> +60 jedn. mocy umięjetności",
+            "+300 pkt. many<br> +20 pkt.przebicia odporności na magię<br> +30 jedn. przyspieszenia umiejętności",
+            "+350 pkt. zdrowia<br> +20 pkt. obrażeń ataku<br> +20 jedn. odnawiania many"
+        ],
+        "correctAnswer": 0
+    },
+    {
+      "question": "Która z tych postaci jest z Shurimy?",
+        "answers": [
+            "Gnar",
+            "Amumu",
+            "Aatrox",
+            "Fiddlestick"
+        ],
+        "correctAnswer": 1
+    },
+    {
+      "question": "Kogo w Lore sciga po Runeterze Zed i Shen?",
+        "answers": [
+            "Dariusa",
+            "Evelynn",
+            "Gravesa",
+            "Jhinna"
+        ],
+        "correctAnswer": 3
+    }
+  ]
+}
