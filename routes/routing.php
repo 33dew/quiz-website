@@ -14,7 +14,7 @@ Route::get("/elo/{siema}", function($req) {
 
 Route::get("/exam/{examId}", function($req) {
     $examId =  $req->uri("examId");
-    $questions = DB::query("SELECT nazwa, json FROM egzaminy WHERE `id` = '$examId'");
+    $questions = DB::query("SELECT nazwa, json FROM egzaminy WHERE `id` = ?", [$examId]);
     if(count($questions) == 0) return Functions::redirect("/");
     return Functions::view("exam", [
         "exam" => $questions[0]['nazwa'],
@@ -28,7 +28,7 @@ Route::post("/exam/{examId}/finish", function($req) {
     $examId =  $req->uri("examId");
     $json = $req->post("answers");
     $result = $req->post("result");
-    DB::query("INSERT INTO `wyniki` VALUES (NULL, '$examId', '$result', '$json', '".Session::get('userId')."');");
+    DB::query("INSERT INTO `wyniki` VALUES (NULL, ?, ?, ?, ?);", [$examId, $result, $json, Session::get('userId')]);
     header('Content-Type: application/json');
     echo json_encode([
         "status" => "ok",
@@ -69,7 +69,7 @@ Route::get("/register", function($req) {
 Route::post("/login", function($req) {
     $login = $req->post("login");
     $pass = $req->post("password");
-    $checker = DB::query("SELECT COUNT(*), id FROM `uzytkownicy` WHERE `login` = '$login' AND `haslo` = '$pass'");
+    $checker = DB::query("SELECT COUNT(*), id FROM `uzytkownicy` WHERE `login` = ? AND `haslo` = ?", [$login, $pass]);
     if($checker[0][0] == 0){
         return Functions::view("login", [
             "error" => "Niepoprawne dane!",
@@ -88,13 +88,13 @@ Route::post("/register", function($req) {
     $secname = $req->post("secname");
     $mail = $req->post("mail");
     $pesel = $req->post("pesel");
-    $checker = DB::query("SELECT COUNT(*), id FROM `uzytkownicy` WHERE `login` = '$login'");
+    $checker = DB::query("SELECT COUNT(*), id FROM `uzytkownicy` WHERE `login` = ?", [$login]);
     if($checker[0][0] == 1){
         return Functions::view("register", [
             "error" => "Ten login jest juz w uzyciu!"
         ]);
     }
-    DB::query("INSERT INTO `uzytkownicy` VALUES (NULL, '$name', '$secname', '$login', '$pass', '$mail', '$pesel')");
+    DB::query("INSERT INTO `uzytkownicy` VALUES (NULL, ?, ?, ?, ?, ?, ?)", [$name, $secname, $login, $pass, $mail, $pesel]);
     Session::set("loggedIn", true);
     Session::set("userId", $checker[0][1]);
     return Functions::redirect("/");
