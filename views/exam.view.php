@@ -124,7 +124,7 @@
             if(answers[j]) {
                 document.querySelector(`input[value="${answers[j]}"][name="answer${j}"]`).checked = true;
             }
-            if(answers[j] !== questions[j].answers[questions[j].correctAnswer])
+            if(answers[j] && answers[j] !== questions[j].answers[questions[j].correctAnswer])
                 document.querySelector(`input[value="${answers[j]}"][name="answer${j}"]`).parentElement.classList.add('text-danger')
             document.querySelector(`input[value="${questions[j].answers[questions[j].correctAnswer]}"][name="answer${j}"]`).parentElement.classList.add('text-success')
         }
