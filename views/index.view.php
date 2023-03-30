@@ -25,6 +25,7 @@
                 <?php if($loggedIn): ?>
                     <a href="/logout" class="btn btn-outline-danger">Wyloguj</a>
                 <?php else: ?>
+                    <a href="/google-login" class="btn btn-outline-primary me-2">Google</a>
                     <a href="/login" class="btn btn-outline-primary me-2">Zaloguj</a>
                     <a href="/register" class="btn btn-outline-primary">Zarejestruj</a>
                 <?php endif; ?>
