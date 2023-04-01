@@ -7,7 +7,7 @@
 <div class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">
         <div class="col-md-10 col-lg-10">
-            <div class="border rounded-3">
+            <div class="border rounded-3 test">
                 <div class="question p-3 border-bottom">
                     <div class="d-flex flex-row justify-content-between align-items-center mcq">
                         <h4><?= $exam ?></h4><span id="questionCounter">(1 z 1)</span></div>
@@ -23,8 +23,10 @@
     const questionCounter = document.getElementById('questionCounter');
     const questionData = document.getElementById('questionData');
     const questionButtons = document.getElementById('questionButtons');
+    const test = document.querySelector('.test');
     const nextButton = document.querySelector('.btn-success');
     const previousButton = document.querySelector('.btn-danger');
+    let time = <?= $time ?>;
     let answers = [];
     answers.length = questionsCount;
     answers.fill(null);
@@ -32,7 +34,19 @@
     document.addEventListener('DOMContentLoaded', () => {
         updateCounter();
         updateQuestion();
+        startTimer();
     })
+
+    const startTimer = () => {
+        const interval = setInterval(() => {
+            if(--time <= 0) {
+                clearInterval(interval);
+                calculateScore();
+                updateCounter();
+            } else {
+                updateCounter();
+            }}, 1000);
+    }
 
     const updateAnswer = () => {
         answers[current] = document.querySelector('input[name="answer"]:checked')?.value;
@@ -148,7 +162,7 @@
     }
 
     const updateCounter = () => {
-        questionCounter.innerText = `(${current + 1} z ${questionsCount})`;
+        questionCounter.innerText = `${time > 0 ? (`Pozostało ${time} sekund!`) : "Koniec czasu!"} (${current + 1} z ${questionsCount})`;
     }
 
     const next = () => {

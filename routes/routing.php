@@ -48,13 +48,14 @@ Route::get("/google-login", function($req){
 
 Route::get("/exam/{examId}", function($req) {
     $examId =  $req->uri("examId");
-    $questions = DB::query("SELECT nazwa, json FROM egzaminy WHERE `id` = ?", [$examId]);
+    $questions = DB::query("SELECT nazwa, json, time FROM egzaminy WHERE `id` = ?", [$examId]);
     if(count($questions) == 0) return Functions::redirect("/");
     return Functions::view("exam", [
         "exam" => $questions[0]['nazwa'],
         "questions" => $questions[0]['json'],
         "title" => "Egzamin ".$questions[0]['nazwa'],
-        "examId" => $examId
+        "examId" => $examId,
+        "time" => $questions[0]['time']
     ]);
 });
 
